@@ -21,13 +21,13 @@ typedef NS_ENUM(NSInteger, CBAutoScrollDirection) {
 };
 
 @interface CBAutoScrollLabel : UIView <UIScrollViewDelegate>
+@property (nonatomic) BOOL canAutoScroll;  // default true , false can not scroll
 
 @property (nonatomic) CBAutoScrollDirection scrollDirection;
 /// Scroll speed in pixels per second, defaults to 30
 @property (nonatomic) float scrollSpeed;
 @property (nonatomic) NSTimeInterval pauseInterval; // defaults to 1.5
 @property (nonatomic) NSInteger labelSpacing; // pixels, defaults to 20
-
 /**
  * The animation options used when scrolling the UILabels.
  * @discussion UIViewAnimationOptionAllowUserInteraction is always applied to the animations.

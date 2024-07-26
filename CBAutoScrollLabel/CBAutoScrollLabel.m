@@ -73,6 +73,7 @@ static void each_object(NSArray *objects, void (^block)(id object)) {
     // default values
     _scrollDirection = CBAutoScrollDirectionLeft;
     _scrollSpeed = kDefaultPixelsPerSecond;
+    _canAutoScroll = true;
     self.pauseInterval = kDefaultPauseTime;
     self.labelSpacing = kDefaultLabelBufferSpace;
     self.textAlignment = NSTextAlignmentLeft;
@@ -271,6 +272,10 @@ static void each_object(NSArray *objects, void (^block)(id object)) {
     if (labelWidth <= CGRectGetWidth(self.bounds))
         return;
 
+    if (!self.canAutoScroll) {
+        return;
+    }
+    
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scrollLabelIfNeeded) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(enableShadow) object:nil];
 
